@@ -1,0 +1,84 @@
+name: Build DirtyFrag
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Extract source zip
+        run: |
+          set -e
+          ZIP=$(ls *.zip 2>/dev/null | head -1)
+          if [ -z "$ZIP" ]; then
+            echo "❌ 仓库根目录未找到 zip 文件"
+            exit 1
+          fi
+          echo "找到: $ZIP"
+          mkdir -p _extract
+          unzip -q "$ZIP" -d _extract
+
+          SRC=$(find _extract -maxdepth 3 -type f -name "build.gradle.kts" -exec dirname {} \; | head -1)
+          if [ -z "$SRC" ]; then
+            echo "❌ zip 里未找到 build.gradle.kts"
+            find _extract -maxdepth 3 -type d
+            exit 1
+          fi
+          echo "源码根目录: $SRC"
+
+          shopt -s dotglob
+          mv "$SRC"/* .
+          shopt -u dotglob
+          rm -rf _extract
+
+          echo "--- 解压后仓库根 ---"
+          ls -la | head -30
+
+      - name: Setup Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Make gradlew executable
+        run: chmod +x gradlew
+
+      - name: Generate signing keystore
+        run: |
+          keytool -genkeypair -v \
+            -keystore app/keystore.jks \
+            -alias dirtyfrag \
+            -keyalg RSA -keysize 2048 -validity 10000 \
+            -storepass dirtyfrag -keypass dirtyfrag \
+            -dname "CN=DirtyFrag, OU=Personal, O=Personal, L=CN, ST=CN, C=CN"
+
+      - name: Build release APK
+        run: ./gradlew :app:assembleRelease --no-daemon --stacktrace
+
+      - name: Verify APK
+        run: |
+          ls -lh app/build/outputs/apk/release/ || true
+          if [ -f app/build/outputs/apk/release/dirtyfrag.apk ]; then
+            echo "--- debuggable 检查（应无输出）---"
+            unzip -p app/build/outputs/apk/release/dirtyfrag.apk AndroidManifest.xml \
+              | grep -a -c debuggable || echo "OK: 无 debuggable 标志"
+          fi
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: DirtyFrag-APK
+          path: app/build/outputs/apk/release/dirtyfrag.apk
+          retention-days: 30
