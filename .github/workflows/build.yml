@@ -18,12 +18,9 @@ jobs:
       - name: Extract source zip
         run: |
           set -e
-          echo "=== 仓库根目录 ==="
-          ls -la
-
           ZIP=$(ls *.zip 2>/dev/null | head -1)
           if [ -z "$ZIP" ]; then
-            echo "❌ 仓库根目录未找到 zip"
+            echo "仓库根目录未找到 zip"
             exit 1
           fi
           echo "找到 zip: $ZIP"
@@ -31,31 +28,31 @@ jobs:
           mkdir -p _extract
           unzip -q "$ZIP" -d _extract
 
-          echo "=== 解压后结构（前 40 项）==="
-          find _extract -maxdepth 6 | head -40
-
-          # 用 settings.gradle.kts 定位项目根（这个文件只有项目根有）
           SRC=$(find _extract -maxdepth 6 -type f -name "settings.gradle.kts" -exec dirname {} \; | head -1)
-
           if [ -z "$SRC" ]; then
-            echo "❌ 未找到 settings.gradle.kts，zip 结构可能不对"
+            echo "zip 里未找到 settings.gradle.kts"
             exit 1
           fi
           echo "项目根: $SRC"
 
+          # 关键一步：先删掉 zip 里的 .github，避免与仓库根目录的 .github 冲突
+          rm -rf "$SRC/.github"
+          rm -rf "$SRC/.gitignore"
+
+          # 搬运源码到仓库根
           shopt -s dotglob
           mv "$SRC"/* .
           shopt -u dotglob
+
           rm -rf _extract
 
           echo "=== 搬运后仓库根 ==="
           ls -la
-          echo "=== app/ 检查 ==="
           if [ ! -d "app" ]; then
-            echo "❌ app/ 不存在，zip 结构不对"
+            echo "app/ 不存在"
             exit 1
           fi
-          echo "✅ app/ 存在"
+          echo "app/ 存在，继续构建"
 
       - name: Setup Java 21
         uses: actions/setup-java@v4
