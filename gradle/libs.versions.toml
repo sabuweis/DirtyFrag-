@@ -10,11 +10,12 @@ activity-compose = "1.9.3"
 compose-bom = "2024.10.01"
 compose-compiler = "1.5.14"
 miuix = "1.2.2"
+miuix-bom = "1.2.2"
 kotlinx-coroutines = "1.8.1"
 protobuf = "4.29.3"
 protobuf-gradle = "0.9.4"
 hiddenapibypass = "3.3.0"
-materialkolor = "0.6.1"
+materialkolor = "0.7.0"
 
 [libraries]
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
@@ -31,6 +32,7 @@ compose-material3 = { group = "androidx.compose.material3", name = "material3", 
 compose-runtime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "compose-bom" }
 compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "compose-bom" }
 compose-animation = { group = "androidx.compose.animation", name = "animation", version.ref = "compose-bom" }
+miuix-bom = { group = "top.yukonga.miuix", name = "miuix-bom", version.ref = "miuix-bom" }
 miuix-ui = { group = "top.yukonga.miuix", name = "miuix-ui", version.ref = "miuix" }
 miuix-icons = { group = "top.yukonga.miuix", name = "miuix-icons", version.ref = "miuix" }
 miuix-nav = { group = "top.yukonga.miuix", name = "miuix-nav", version.ref = "miuix" }
