@@ -2,10 +2,10 @@ name: Build
 
 on:
   push:
-    branches: [master, main]
+    branches: [master, main, '伪计算机DirtyFrag']
     tags: ['v*']
   pull_request:
-    branches: [master, main]
+    branches: [master, main, '伪计算机DirtyFrag']
   workflow_dispatch:
 
 # The tag push creates the GitHub Release, which needs contents: write. Without this the
