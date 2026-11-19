@@ -40,10 +40,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.util.lerp
 import com.android.bbkcalculator.ui.theme.LocalCalculatorColors
-import top.yukonga.miuix.kmp.blur.Backdrop
-import top.yukonga.miuix.kmp.blur.drawBackdrop
-import top.yukonga.miuix.kmp.blur.layerBackdrop
-import top.yukonga.miuix.kmp.blur.rememberLayerBackdrop
 
 data class BottomBarItem(
     val label: String,
@@ -56,7 +52,6 @@ fun SimpleFloatingBottomBar(
     modifier: androidx.compose.ui.Modifier = androidx.compose.ui.Modifier,
     selectedIndex: Int,
     onDestinationClick: (Int) -> Unit,
-    backdrop: Backdrop,
     items: List<BottomBarItem>
 ) {
     val colors = LocalCalculatorColors.current
@@ -74,8 +69,6 @@ fun SimpleFloatingBottomBar(
     val selectedIndexState = remember { mutableIntStateOf(selectedIndex) }
     val animProgress = remember { mutableStateOf(0f) }
     
-    val layerBackdrop = rememberLayerBackdrop()
-    
     // 液态玻璃效果容器
     Box(
         modifier = modifier
@@ -84,9 +77,6 @@ fun SimpleFloatingBottomBar(
             .padding(horizontal = 16.dp, vertical = 8.dp)
             .background(Color.Transparent)
             .drawBehind {
-                // 绘制模糊背景
-                drawBackdrop(backdrop, 0f, 0f, size.width, size.height, containerShape)
-                
                 // 绘制背景色
                 drawRoundRect(
                     color = backgroundColor,
@@ -173,14 +163,14 @@ fun SimpleFloatingBottomBar(
             val selectedItem = items[selectedIndexState.value]
             val itemWidth = 1f / items.size
             val indicatorWidth = itemWidth * 0.8f
-            val indicatorX = (selectedIndexState.value.toFloat() + (1f - indicatorWidth) / 2f) * size.width
             
             Box(
                 modifier = androidx.compose.ui.Modifier
-                    .width(indicatorWidth * size.width)
+                    .width(indicatorWidth * 0.8f)
                     .height(56.dp)
+                    .align(Alignment.CenterStart)
                     .graphicsLayer {
-                        translationX = indicatorX
+                        translationX = selectedIndexState.value.toFloat() * (1f / items.size) * size.width + (1f / items.size) * size.width * 0.1f
                     }
                     .background(indicatorColor, pillShape)
                     .clip(pillShape)

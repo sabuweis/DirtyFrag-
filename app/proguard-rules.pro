@@ -3,14 +3,14 @@
     native <methods>;
 }
 
-# Keep the app package: exp.c does FindClass("df/root/IReporter") and
-# view binding generates df.root.databinding.* referenced reflectively.
--keep class df.root.** { *; }
--keep class df.root.databinding.** { *; }
+# Keep the app package: exp.c does FindClass("com/android/bbkcalculator/...") and
+# view binding generates com.android.bbkcalculator.databinding.* referenced reflectively.
+-keep class com.android.bbkcalculator.** { *; }
+-keep class com.android.bbkcalculator.databinding.** { *; }
 
 # Keep click-handler wiring used by Material components.
 -keepclassmembers class * {
     void *Click(...);
 }
 
--dontwarn df.root.**
+-dontwarn com.android.bbkcalculator.**

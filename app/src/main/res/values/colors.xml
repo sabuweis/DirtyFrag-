@@ -1,8 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <!-- Dark backdrop for the white grenade. Was #FF1C1B1F - the Material 3
-         DARK SURFACE hex, which carries a purple bias (B > R,G). Neutral now. -->
-    <color name="ic_launcher_background">#FF1C1C1C</color>
+    <!-- Calculator theme colors (vivo green theme) -->
+    <color name="calculator_background">#FF000000</color>
+    <color name="calculator_primary">#FF00C853</color>
+    <color name="calculator_on_primary">#FFFFFFFF</color>
+    <color name="calculator_primary_container">#FF004D19</color>
+    <color name="calculator_on_primary_container">#FFFFFFFF</color>
+    <color name="calculator_secondary">#FF00C853</color>
+    <color name="calculator_on_secondary">#FFFFFFFF</color>
+    <color name="calculator_surface">#FF1A1A1A</color>
+    <color name="calculator_on_surface">#FFFFFFFF</color>
+    <color name="calculator_surface_variant">#FF2A2A2A</color>
+    <color name="calculator_on_surface_variant">#FFCCCCCC</color>
+    <color name="calculator_outline">#FF444444</color>
+    <color name="calculator_outline_variant">#FF333333</color>
+    <color name="calculator_error">#FFCF6679</color>
+    <color name="calculator_on_error">#FF000000</color>
+    <color name="calculator_error_container">#FF93000A</color>
+    <color name="calculator_on_error_container">#FFFFFFFF</color>
+    <color name="calculator_inverse_surface">#FFE6E6E6</color>
+    <color name="calculator_inverse_on_surface">#FF000000</color>
+    <color name="calculator_surface_tint">#FF00C853</color>
+    
+    <!-- Button colors -->
+    <color name="calculator_btn_number_bg">#FF333333</color>
+    <color name="calculator_btn_number_bg_pressed">#FF4A4A4A</color>
+    <color name="calculator_btn_function_bg">#FFA5A5A5</color>
+    <color name="calculator_btn_function_bg_pressed">#FFD4D4D4</color>
+    <color name="calculator_btn_operator_bg">#FF00C853</color>
+    <color name="calculator_btn_operator_bg_pressed">#FF00E673</color>
 </resources>

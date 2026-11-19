@@ -136,4 +136,7 @@ dependencies {
     
     // Hidden API bypass
     implementation(libs.hiddenapibypass)
+    
+    // MaterialKolor for dynamic color
+    implementation(libs.materialkolor)
 }

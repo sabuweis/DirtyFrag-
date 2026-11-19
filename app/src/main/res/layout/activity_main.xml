@@ -57,7 +57,7 @@
          is lifted. The order and any hidden card are kept in dfroot_ui prefs.
          The stack is wrap_content so the log below it still rides along with
          whatever the cards add up to. -->
-    <df.root.CardStackLayout
+    <com.android.bbkcalculator.CardStackLayout
         android:id="@+id/cardStack"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -74,7 +74,7 @@
     <!-- SU Manager picker. Upstream 3.2 removed the bundled ksud binary and
          stages it from the selected manager's nativeLibraryDir, so the exploit
          cannot run at all until a manager is picked here. -->
-    <df.root.DraggableCardView
+    <com.android.bbkcalculator.DraggableCardView
         android:id="@+id/cardSuManager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -131,9 +131,9 @@
 
         </LinearLayout>
 
-    </df.root.DraggableCardView>
+    </com.android.bbkcalculator.DraggableCardView>
 
-    <df.root.DraggableCardView
+    <com.android.bbkcalculator.DraggableCardView
         android:id="@+id/cardBoot"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -183,7 +183,7 @@
 
                 </LinearLayout>
 
-                <df.root.OneUiSwitch
+                <com.android.bbkcalculator.OneUiSwitch
                     android:id="@+id/switchBootStart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -223,7 +223,7 @@
 
                 </LinearLayout>
 
-                <df.root.OneUiSwitch
+                <com.android.bbkcalculator.OneUiSwitch
                     android:id="@+id/switchAutoSoftReboot"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -233,9 +233,9 @@
 
         </LinearLayout>
 
-    </df.root.DraggableCardView>
+    </com.android.bbkcalculator.DraggableCardView>
 
-    <df.root.DraggableCardView
+    <com.android.bbkcalculator.DraggableCardView
         android:id="@+id/cardModules"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -279,7 +279,7 @@
 
             </LinearLayout>
 
-            <df.root.OneUiSwitch
+            <com.android.bbkcalculator.OneUiSwitch
                 android:id="@+id/switchModules"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -288,9 +288,9 @@
 
         </LinearLayout>
 
-    </df.root.DraggableCardView>
+    </com.android.bbkcalculator.DraggableCardView>
 
-    <df.root.DraggableCardView
+    <com.android.bbkcalculator.DraggableCardView
         android:id="@+id/cardLog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -333,7 +333,7 @@
 
             </LinearLayout>
 
-            <df.root.OneUiSwitch
+            <com.android.bbkcalculator.OneUiSwitch
                 android:id="@+id/switchAdvancedLog"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -341,9 +341,9 @@
 
         </LinearLayout>
 
-    </df.root.DraggableCardView>
+    </com.android.bbkcalculator.DraggableCardView>
 
-    </df.root.CardStackLayout>
+    </com.android.bbkcalculator.CardStackLayout>
 
     <!-- The advanced log. CardStackLayout owns this box (VIS4): it keeps a window
          of @dimen/log_window_height under the "Show advanced log" card and cuts
@@ -394,7 +394,7 @@
         <!-- OneUI-style fade over the log box. Not clickable, so a press that
              lands on it carries on through to the text underneath: the bottom of
              the log is covered in gradient, and still has to scroll. -->
-        <df.root.BottomFadeView
+        <com.android.bbkcalculator.BottomFadeView
             android:id="@+id/bottomFade"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -404,7 +404,7 @@
     </FrameLayout>
 
     <!-- OneUI-update-style two-step progress bar -->
-    <df.root.TwoStepProgressView
+    <com.android.bbkcalculator.TwoStepProgressView
         android:id="@+id/twoStep"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
