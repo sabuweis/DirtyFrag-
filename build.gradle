@@ -1,0 +1,5 @@
+// Root project build file (Groovy DSL to avoid kotlin extension conflict)
+// All plugin versions are declared in settings.gradle.kts pluginManagement.plugins {}
+
+plugins {
+}
