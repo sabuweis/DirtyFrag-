@@ -24,9 +24,10 @@ jobs:
           java-version: 21
 
       - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
+        uses: android-actions/setup-android@v4
         with:
           ndk-version: 27.0.12077973
+          # android-37, build-tools, cmake are pre-installed on ubuntu-26.04
 
       - uses: gradle/actions/setup-gradle@v6
 
