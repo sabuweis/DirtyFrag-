@@ -1,7 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("com.google.protobuf") version "0.9.4"
+    id("com.google.protobuf")
     id("kotlin-parcelize")
 }
 
@@ -121,7 +121,8 @@ dependencies {
     implementation(libs.compose.foundation)
     implementation(libs.compose.animation)
     
-    // MIUIx dependencies
+    // MIUIx BOM + dependencies
+    implementation(platform(libs.miuix.bom))
     implementation(libs.miuix.ui)
     implementation(libs.miuix.icons)
     implementation(libs.miuix.nav)
