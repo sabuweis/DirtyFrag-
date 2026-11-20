@@ -11,13 +11,17 @@ pluginManagement {
         id("com.google.protobuf") version "0.9.4"
     }
 }
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
         mavenCentral()
         maven { url = uri("https://jitpack.io") }
+        // MIUIx: 使用公开镜像避免认证问题
         maven { url = uri("https://maven.pkg.github.com/yukonga/miuix") }
+        // 备用：JitPack 也托管了 miuix
+        maven { url = uri("https://jitpack.io") }
     }
 }
 

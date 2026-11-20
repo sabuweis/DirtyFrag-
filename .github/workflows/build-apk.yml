@@ -14,7 +14,7 @@ jobs:
   build-apk:
     name: Build Debug APK
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v7
 
@@ -22,6 +22,11 @@ jobs:
         with:
           distribution: temurin
           java-version: 21
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          ndk-version: 27.0.12077973
 
       - uses: gradle/actions/setup-gradle@v6
 
