@@ -1,8 +1,8 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.protobuf)
-    alias(libs.plugins.kotlin.parcelize)
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android") version rootProject.extra["kotlinVersion"].toString()
+    id("com.google.protobuf")
+    id("org.jetbrains.kotlin.plugin.parcelize") version rootProject.extra["kotlinVersion"].toString()
 }
 
 android {
