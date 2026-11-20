@@ -10,6 +10,7 @@ import com.android.bbkcalculator.data.repository.SettingsRepository
 import com.android.bbkcalculator.data.repository.SettingsRepositoryImpl
 import com.android.bbkcalculator.ui.LocalUiMode
 import com.android.bbkcalculator.ui.UiMode
+import com.android.bbkcalculator.ui.theme.AppSettings
 
 enum class ColorMode(val value: Int) {
     SYSTEM(0),
@@ -65,7 +66,7 @@ fun ColorSpec.SpecVersion.effectiveFor(style: PaletteStyle): ColorSpec.SpecVersi
     }
 
 object ThemeController {
-    fun getAppSettings(repo: SettingsRepository = SettingsRepositoryImpl()): AppSettings {
+    fun getAppSettings(repo: SettingsRepository = DefaultSettingsRepository): AppSettings {
         val uiMode = repo.uiMode
         var colorModeValue = repo.themeMode
 
