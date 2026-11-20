@@ -91,6 +91,9 @@ jobs:
 
       - uses: gradle/actions/setup-gradle@v6
 
+      - name: Make gradlew executable
+        run: chmod +x gradlew
+
       - name: Build DFRoot APK
         run: |
           if [ "${{ github.event_name }}" = "pull_request" ] || ! echo "${{ github.ref }}" | grep -q "^refs/tags/"; then
