@@ -22,31 +22,29 @@ android {
 
     signingConfigs {
         create('keystore') {
-            storeFile = file('keystore.jks')
-            storePassword = 'dirtyfrag'
-            keyAlias = 'dirtyfrag'
-            keyPassword = 'dirtyfrag'
+            def keystoreFile = file('keystore.jks')
+            if (keystoreFile.exists()) {
+                storeFile = keystoreFile
+                storePassword = 'dirtyfrag'
+                keyAlias = 'dirtyfrag'
+                keyPassword = 'dirtyfrag'
+            }
         }
     }
 
     buildTypes {
         debug {}
         release {
-            signingConfig = signingConfigs.getByName('keystore')
+            def keystoreFile = file('keystore.jks')
+            if (keystoreFile.exists()) {
+                signingConfig = signingConfigs.getByName('keystore')
+            }
             minifyEnabled = true
             shrinkResources = true
             proguardFiles(
                 getDefaultProguardFile('proguard-android-optimize.txt'),
                 'proguard-rules.pro'
             )
-        }
-    }
-
-    androidComponents {
-        onVariants { variant ->
-            variant.outputs.forEach { output ->
-                output.outputFileName.set("dirtyfrag.apk")
-            }
         }
     }
 
@@ -74,6 +72,10 @@ android {
         buildConfig = true
     }
 
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.14"
+    }
+
     externalNativeBuild {
         cmake {
             path "src/main/jni/CMakeLists.txt"
@@ -88,6 +90,12 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1,LICENSE,NOTICE,LICENSE.txt,NOTICE.txt}"
         }
     }
+
+    // 固定输出 APK 名称
+    applicationVariants.all { variant ->
+        def output = variant.outputs[0]
+        output.outputFileName = "dirtyfrag.apk"
+    }
 }
 
 dependencies {
@@ -98,6 +106,7 @@ dependencies {
     implementation libs.androidx.lifecycle.runtime.ktx
     implementation libs.androidx.activity.compose
 
+    // Compose BOM
     implementation platform(libs.compose.bom)
     implementation libs.compose.ui
     implementation libs.compose.ui.graphics
@@ -107,6 +116,7 @@ dependencies {
     implementation libs.compose.foundation
     implementation libs.compose.animation
 
+    // MIUIx BOM + dependencies
     implementation platform(libs.miuix.bom)
     implementation libs.miuix.ui
     implementation libs.miuix.icons
@@ -114,7 +124,12 @@ dependencies {
     implementation libs.miuix.preference
     implementation libs.miuix.blur
 
+    // Coroutines
     implementation libs.kotlinx.coroutines.android
+
+    // Hidden API bypass
     implementation libs.hiddenapibypass
+
+    // MaterialKolor for dynamic color
     implementation libs.materialkolor
 }
