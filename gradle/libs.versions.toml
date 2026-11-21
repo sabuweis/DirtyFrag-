@@ -12,8 +12,7 @@ compose-compiler = "1.5.14"
 miuix = "1.2.2"
 miuix-bom = "1.2.2"
 kotlinx-coroutines = "1.8.1"
-protobuf = "4.29.3"
-protobuf-gradle = "0.9.4"
+
 hiddenapibypass = "3.3.0"
 materialkolor = "0.7.0"
 
@@ -39,12 +38,11 @@ miuix-nav = { group = "top.yukonga.miuix", name = "miuix-nav", version.ref = "mi
 miuix-preference = { group = "top.yukonga.miuix", name = "miuix-preference", version.ref = "miuix" }
 miuix-blur = { group = "top.yukonga.miuix", name = "miuix-blur", version.ref = "miuix" }
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }
-protobuf-kotlin-lite = { group = "com.google.protobuf", name = "protobuf-kotlin-lite", version.ref = "protobuf" }
+
 hiddenapibypass = { group = "com.github.tiann", name = "HiddenApiBypass", version.ref = "hiddenapibypass" }
 materialkolor = { group = "com.materialkolor", name = "materialkolor", version.ref = "materialkolor" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-protobuf = { id = "com.google.protobuf", version.ref = "protobuf-gradle" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }

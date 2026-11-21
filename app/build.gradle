@@ -1,6 +1,5 @@
 plugins {
     id 'com.android.application'
-    id 'com.google.protobuf'
     id 'org.jetbrains.kotlin.plugin.parcelize'
     id 'org.jetbrains.kotlin.plugin.compose'
 }
@@ -116,7 +115,6 @@ dependencies {
     implementation libs.miuix.blur
 
     implementation libs.kotlinx.coroutines.android
-    implementation libs.protobuf.kotlin.lite
     implementation libs.hiddenapibypass
     implementation libs.materialkolor
 }
