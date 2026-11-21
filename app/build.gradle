@@ -1,5 +1,4 @@
 plugins {
-# force-new-run-1795253561
     id 'com.android.application'
     id 'com.google.protobuf'
     id 'org.jetbrains.kotlin.plugin.parcelize'
@@ -57,15 +56,13 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 
-    kotlin {
-        compilerOptions {
-            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
-            freeCompilerArgs.addAll(
-                "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
-                "-opt-in=androidx.compose.material3.ExperimentalMaterial3ExpressiveApi",
-                "-opt-in=kotlin.RequiresOptIn"
-            )
-        }
+    kotlinOptions {
+        jvmTarget = "11"
+        freeCompilerArgs += [
+            "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
+            "-opt-in=androidx.compose.material3.ExperimentalMaterial3ExpressiveApi",
+            "-opt-in=kotlin.RequiresOptIn"
+        ]
     }
 
     lint {
