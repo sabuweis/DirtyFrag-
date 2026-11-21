@@ -53,13 +53,17 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 
-    kotlinOptions {
-        jvmTarget = "11"
-        freeCompilerArgs += [
-            "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
-            "-opt-in=androidx.compose.material3.ExperimentalMaterial3ExpressiveApi",
-            "-opt-in=kotlin.RequiresOptIn"
-        ]
+    // kotlinOptions is not available without kotlin-android plugin
+    // Configure Kotlin compile tasks directly for K2 + Compose compiler plugin
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+        kotlinOptions {
+            jvmTarget = "11"
+            freeCompilerArgs += [
+                "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
+                "-opt-in=androidx.compose.material3.ExperimentalMaterial3ExpressiveApi",
+                "-opt-in=kotlin.RequiresOptIn"
+            ]
+        }
     }
 
     lint {
