@@ -96,11 +96,18 @@ android {
         }
     }
 
-    // 固定输出 APK 名称 - AGP 9.x 使用 configureEach
-    applicationVariants.configureEach { variant ->
-        variant.outputs.configureEach { output ->
-            output.outputFileName = "dirtyfrag.apk"
-        }
+    // 固定输出 APK 名称 - AGP 9.x 兼容写法
+    androidComponents {
+        onVariants(selector().withBuildType("debug"), { variant ->
+            variant.outputs.configureEach { output ->
+                output.outputFileName = "dirtyfrag.apk"
+            }
+        })
+        onVariants(selector().withBuildType("release"), { variant ->
+            variant.outputs.configureEach { output ->
+                output.outputFileName = "dirtyfrag.apk"
+            }
+        })
     }
 }
 
